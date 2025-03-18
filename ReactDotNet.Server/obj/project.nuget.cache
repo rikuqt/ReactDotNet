@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "cK9hnifBAoU=",
+  "success": true,
+  "projectFilePath": "C:\\Projects\\React\\React Study\\ReactDotNet\\ReactDotNet.Server\\ReactDotNet.Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\RikuTomann\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.3\\microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
+    "C:\\Users\\RikuTomann\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\9.0.3\\microsoft.aspnetcore.spaproxy.9.0.3.nupkg.sha512",
+    "C:\\Users\\RikuTomann\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
