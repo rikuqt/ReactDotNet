@@ -1,12 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "cK9hnifBAoU=",
+  "dgSpecHash": "0eQ2jFIE5tQ=",
   "success": true,
   "projectFilePath": "C:\\Projects\\React\\React Study\\ReactDotNet\\ReactDotNet.Server\\ReactDotNet.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\RikuTomann\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.3\\microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
-    "C:\\Users\\RikuTomann\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\9.0.3\\microsoft.aspnetcore.spaproxy.9.0.3.nupkg.sha512",
-    "C:\\Users\\RikuTomann\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+    "C:\\Users\\RikuTomann\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\RikuTomann\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512",
+    "C:\\Users\\RikuTomann\\.nuget\\packages\\swashbuckle.aspnetcore\\6.1.4\\swashbuckle.aspnetcore.6.1.4.nupkg.sha512",
+    "C:\\Users\\RikuTomann\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.1.4\\swashbuckle.aspnetcore.swagger.6.1.4.nupkg.sha512",
+    "C:\\Users\\RikuTomann\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.1.4\\swashbuckle.aspnetcore.swaggergen.6.1.4.nupkg.sha512",
+    "C:\\Users\\RikuTomann\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.1.4\\swashbuckle.aspnetcore.swaggerui.6.1.4.nupkg.sha512"
   ],
   "logs": []
 }

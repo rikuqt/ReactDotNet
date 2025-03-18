@@ -1,28 +1,43 @@
+using Microsoft.OpenApi.Models;
+using PersonStore.DB;
+
+var client = "https://localhost:53691/";
+var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy  =>
+                      {
+                          policy.WithOrigins("http://example.com",
+                                              "http://www.contoso.com");
+                      });
+});
+builder.Services.AddSwaggerGen(c =>
+    {
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "FORM API", Description = "Keeps track of name, surname and age", Version = "v1" });
+    });
 
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-app.UseDefaultFiles();
-app.MapStaticAssets();
+        app.UseSwagger();
+app.UseSwaggerUI(c =>
+    {
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Form V1");
+    });
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
 
-app.UseHttpsRedirection();
+app.UseCors(MyAllowSpecificOrigins);
+app.MapGet("/", () => "Hello World!");
 
-app.UseAuthorization();
+app.MapGet("/persons/{id}", (int id) => PersonDB.GetPerson(id));
+app.MapGet("/persons", () => PersonDB.GetPersons());
+app.MapPost("/persons", (Person person) => PersonDB.CreatePerson(person));
+app.MapPut("/persons", (Person person) => PersonDB.UpdatePerson(person));
+app.MapPut("/persons/{id}", (int id) => PersonDB.RemovePerson(id));
 
-app.MapControllers();
-
-app.MapFallbackToFile("/index.html");
 
 app.Run();

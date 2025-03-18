@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "4dB8ZPDVYhTqNnjr+KOxVf0cVRw+2+M9mMQO+evGcDY=",
+  "Source": "ReactDotNet.Server",
+  "BasePath": "_content/ReactDotNet.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

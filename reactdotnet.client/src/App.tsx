@@ -1,15 +1,17 @@
 import { list } from "postcss";
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 
 // refaktoroi input fieldit omaksi kompotentiksi
+// alert jos kentissä on tyhjää
 
 const InputField = ({type, name, value, onChange, placeholder }: {type: "text" | "number",name: string, value: string | number, 
   onChange: React.ChangeEventHandler<HTMLInputElement>, placeholder: string }) => {
   return (
     <label>
       <input
+        className="hover:bg-orange-400 text-white placeholder:text-white p-2 rounded"
         type={type}
         name={name}
         value={value}
@@ -20,10 +22,22 @@ const InputField = ({type, name, value, onChange, placeholder }: {type: "text" |
   );
 }
 
-const Button= ({type, text}:{type: "submit", text: string}) => {
+const Button = ({type, text}:{type: "submit", text: string}) => {
   return(
     <button className="text-orange-400 hover:bg-orange-200" type="submit">{text}</button>
   )
+}
+
+const TextField = ({info, listContains}: {info: any, listContains: boolean}) => {
+  if(listContains == true) {
+    return <ul>       
+    <li>Name: {info[0].name}</li>
+    <li>Surname: {info[0].surname}</li>
+    <li>Age: {info[0].age}</li>
+  </ul>
+  } else {
+    return <p>No data yet</p>
+  }
 }
 
 export default function App() {
@@ -36,7 +50,12 @@ export default function App() {
   let [id, setId] = useState<number>(1);
   const [info, setInfo] = useState<Info[]>([]);
   const [inputs, setInputs] = useState<Info>({ id: 0 });
+  const [listContains, SetListContains] = useState<boolean>(false)
 
+  useEffect(() => {
+    console.log("useEffectin info: ", info)
+  }, [info]
+)
 
   const handleChange = (event: { target: { name: any; value: any; }; }) => {
     const name = event.target.name;
@@ -53,7 +72,8 @@ export default function App() {
     const { id: _, ...rest } = inputs;
     setInfo([...info, { id, ...rest }]);
     setId(id + 1);
-    console.log(info);
+    console.log("HandleSubmit funktion info: ", info);
+    SetListContains(true)
   };
   return (
     <div className="App">
@@ -85,13 +105,8 @@ export default function App() {
 
         <Button type={"submit"} text="Submit"/>
 
+        <TextField info={info} listContains={listContains}/>
       </form>
-      <p>Sent to DB</p>
-      <ul className="font-extralight text-2xl">
-            <li>Name: {info[1].name}</li>
-            <li>Surname: {info[1].surname}</li>
-            <li>Age: {info[1].age}</li>
-      </ul>
     </div>
   );
 }

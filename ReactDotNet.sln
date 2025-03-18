@@ -1,11 +1,8 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35828.75 d17.13
+VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "reactdotnet.client", "reactdotnet.client\reactdotnet.client.esproj", "{F23DCAC6-44A3-50C1-6876-7A81AC6E666F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactDotNet.Server", "ReactDotNet.Server\ReactDotNet.Server.csproj", "{E558DB8E-FE23-4D67-A00A-148C963E174D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactDotNet.Server", "ReactDotNet.Server\ReactDotNet.Server.csproj", "{44FD4EAF-FCB2-659D-33BB-9103E86AA544}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,21 +10,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F23DCAC6-44A3-50C1-6876-7A81AC6E666F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F23DCAC6-44A3-50C1-6876-7A81AC6E666F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F23DCAC6-44A3-50C1-6876-7A81AC6E666F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{F23DCAC6-44A3-50C1-6876-7A81AC6E666F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F23DCAC6-44A3-50C1-6876-7A81AC6E666F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F23DCAC6-44A3-50C1-6876-7A81AC6E666F}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{E558DB8E-FE23-4D67-A00A-148C963E174D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E558DB8E-FE23-4D67-A00A-148C963E174D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E558DB8E-FE23-4D67-A00A-148C963E174D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E558DB8E-FE23-4D67-A00A-148C963E174D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44FD4EAF-FCB2-659D-33BB-9103E86AA544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44FD4EAF-FCB2-659D-33BB-9103E86AA544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44FD4EAF-FCB2-659D-33BB-9103E86AA544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44FD4EAF-FCB2-659D-33BB-9103E86AA544}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {1ACB698D-8B91-4391-B88F-0AD6640A350E}
+		SolutionGuid = {2C8DBF2D-96AA-4CEF-88B0-D08230560ADF}
 	EndGlobalSection
 EndGlobal
