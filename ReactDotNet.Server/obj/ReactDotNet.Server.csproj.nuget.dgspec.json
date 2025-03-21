@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\React\\React Study\\ReactDotNet\\ReactDotNet.Server\\ReactDotNet.Server.csproj": {}
+    "C:\\Projects\\ReactDotnet\\ReactDotNet\\ReactDotNet.Server\\ReactDotNet.Server.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\React\\React Study\\ReactDotNet\\ReactDotNet.Server\\ReactDotNet.Server.csproj": {
+    "C:\\Projects\\ReactDotnet\\ReactDotNet\\ReactDotNet.Server\\ReactDotNet.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\React\\React Study\\ReactDotNet\\ReactDotNet.Server\\ReactDotNet.Server.csproj",
+        "projectUniqueName": "C:\\Projects\\ReactDotnet\\ReactDotNet\\ReactDotNet.Server\\ReactDotNet.Server.csproj",
         "projectName": "ReactDotNet.Server",
-        "projectPath": "C:\\Projects\\React\\React Study\\ReactDotNet\\ReactDotNet.Server\\ReactDotNet.Server.csproj",
+        "projectPath": "C:\\Projects\\ReactDotnet\\ReactDotNet\\ReactDotNet.Server\\ReactDotNet.Server.csproj",
         "packagesPath": "C:\\Users\\RikuTomann\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\React\\React Study\\ReactDotNet\\ReactDotNet.Server\\obj\\",
+        "outputPath": "C:\\Projects\\ReactDotnet\\ReactDotNet\\ReactDotNet.Server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -54,6 +54,14 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.3, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[3.2.1, )"
+            },
+            "NSwag.AspNetCore": {
+              "target": "Package",
+              "version": "[14.2.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

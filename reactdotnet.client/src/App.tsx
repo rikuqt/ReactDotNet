@@ -2,6 +2,8 @@ import { list } from "postcss";
 import "./App.css";
 import { useState, useEffect } from "react";
 import React from "react";
+import ky from "ky";
+
 
 // refaktoroi input fieldit omaksi kompotentiksi
 // alert jos kentissä on tyhjää
@@ -22,9 +24,9 @@ const InputField = ({type, name, value, onChange, placeholder }: {type: "text" |
   );
 }
 
-const Button = ({type, text}:{type: "submit", text: string}) => {
+const Button = ({text, type}:{text: string, type: "submit"}) => {
   return(
-    <button className="text-orange-400 hover:bg-orange-200" type="submit">{text}</button>
+    <button className="text-orange-400 hover:bg-orange-200" type={type}>{text}</button>
   )
 }
 
@@ -39,14 +41,14 @@ const TextField = ({info, listContains}: {info: any, listContains: boolean}) => 
     return <p>No data yet</p>
   }
 }
-
+interface Info {
+  id: number;
+  name?: string;
+  surname?: string;
+  age?: number;
+  }
+  
 export default function App() {
-    interface Info {
-        id: number;
-        name?: string;
-        surname?: string;
-        age?: number;
-        }
   let [id, setId] = useState<number>(1);
   const [info, setInfo] = useState<Info[]>([]);
   const [inputs, setInputs] = useState<Info>({ id: 0 });
@@ -56,6 +58,18 @@ export default function App() {
     console.log("useEffectin info: ", info)
   }, [info]
 )
+
+const postData = async () => {
+    try {const json = await ky.post('http://localhost:5270/api/persons', {json: {name: "testi3", surname: "testi3", age: 3}}).json();
+      
+    console.log("lähetetty tieto backendiin: ", json)
+  } catch(error) {
+
+    console.error("Virhe tietoja lähettäessä: ", error)
+  }
+  
+  
+}
 
   const handleChange = (event: { target: { name: any; value: any; }; }) => {
     const name = event.target.name;
@@ -74,6 +88,7 @@ export default function App() {
     setId(id + 1);
     console.log("HandleSubmit funktion info: ", info);
     SetListContains(true)
+    postData()
   };
   return (
     <div className="App">
