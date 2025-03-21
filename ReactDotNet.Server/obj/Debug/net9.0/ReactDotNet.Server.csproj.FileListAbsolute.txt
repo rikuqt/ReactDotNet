@@ -35,8 +35,6 @@ C:\Projects\React\React Study\ReactDotNet\ReactDotNet.Server\obj\Debug\net9.0\re
 C:\Projects\React\React Study\ReactDotNet\ReactDotNet.Server\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Projects\React\React Study\ReactDotNet\ReactDotNet.Server\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Projects\React\React Study\ReactDotNet\ReactDotNet.Server\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-c:\Projects\ReactDotnet\ReactDotNet\ReactDotNet.Server\bin\Debug\net9.0\appsettings.Development.json
-c:\Projects\ReactDotnet\ReactDotNet\ReactDotNet.Server\bin\Debug\net9.0\appsettings.json
 c:\Projects\ReactDotnet\ReactDotNet\ReactDotNet.Server\bin\Debug\net9.0\ReactDotNet.Server.staticwebassets.endpoints.json
 c:\Projects\ReactDotnet\ReactDotNet\ReactDotNet.Server\bin\Debug\net9.0\ReactDotNet.Server.exe
 c:\Projects\ReactDotnet\ReactDotNet\ReactDotNet.Server\bin\Debug\net9.0\ReactDotNet.Server.deps.json

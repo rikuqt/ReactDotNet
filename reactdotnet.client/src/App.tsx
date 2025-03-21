@@ -14,7 +14,7 @@ import { InputField, SubmitButton, TextField } from "./Components";
 // </ul>
 // }
 
-type Person ={
+type Person = {
   name: string;
   surname: string;
   age: number;
