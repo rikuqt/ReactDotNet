@@ -1,0 +1,3 @@
+// refaktoroi input fieldit omaksi kompotentiksi [x]
+// alert jos kentissä on tyhjää -> backend? []
+// Docker composer ja front/back oma kontti -> yaml tiedostoon tulee tunnukset,saliket ja osoitteet []
