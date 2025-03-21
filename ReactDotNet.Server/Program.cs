@@ -54,6 +54,4 @@ app.MapControllers();
 // app.MapPut("/persons", (Person person) => PersonDB.UpdatePerson(person));
 // app.MapDelete("/persons/{id}", (int id) => PersonDB.RemovePerson(id));
 
-
-
 app.Run();
