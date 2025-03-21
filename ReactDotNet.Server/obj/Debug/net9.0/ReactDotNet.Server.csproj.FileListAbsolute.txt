@@ -89,3 +89,4 @@ C:\Projects\ReactDotnet\ReactDotNet\ReactDotNet.Server\bin\Debug\net9.0\MongoDB.
 C:\Projects\ReactDotnet\ReactDotNet\ReactDotNet.Server\bin\Debug\net9.0\SharpCompress.dll
 C:\Projects\ReactDotnet\ReactDotNet\ReactDotNet.Server\bin\Debug\net9.0\Snappier.dll
 C:\Projects\ReactDotnet\ReactDotNet\ReactDotNet.Server\bin\Debug\net9.0\ZstdSharp.dll
+C:\Projects\ReactDotnet\ReactDotNet\ReactDotNet.Server\bin\Debug\net9.0\appsettings.json
