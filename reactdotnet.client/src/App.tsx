@@ -5,11 +5,20 @@ import ky from "ky";
 import { List } from "postcss/lib/list";
 import { InputField, SubmitButton, TextField } from "./Components";
 
-// type Person [
-//   name: string;
-//   surname: string;
-//   age: number;
-// ]
+
+// const PersonInfo = ({persons}: {persons: List}) => {
+//   return <ul>
+//   {persons.map((person) => (
+//     <li key={person.Id}>{person.Name}{person.Surame}{person.Age}</li>
+//   ))}
+// </ul>
+// }
+
+type Person ={
+  name: string;
+  surname: string;
+  age: number;
+}
 
 interface Info {
   id: number;
@@ -23,20 +32,18 @@ export default function App() {
   const [info, setInfo] = useState<Info[]>([]);
   const [inputs, setInputs] = useState<Info>({ id: 0 });
   const [listContains, SetListContains] = useState<boolean>(false)
-  const [persons, SetPersons] = useState({})
+  const [persons, SetPersons] = useState<List[]>([])
 
   useEffect(() => {
     console.log("useEffectin info: ", info)
     getData()
-
-    console.log(persons)
 
   }, [info]
 )
 
 const getData = async () => {
   try {
-    const json: List[] = await ky("http://localhost:5270/api/persons").json()
+    const json: any = await ky("http://localhost:5270/api/persons").json()
     console.log("Databasesta tullut json data: ",json)
     SetPersons(json)
     console.log("Persons dictionary: ", persons)
@@ -81,6 +88,11 @@ const postData = async () => {
   };
   return (
     <div className="App">
+       <ul>
+      {persons.map((person: any) => (
+        <li key={person.Id}>Name: {person.Name} | Surname: {person.Surname} | Age: {person.Age}</li>
+      ))}
+    </ul>
       <form onSubmit={handleSubmit}>
         <label>
          <InputField type="text" 
