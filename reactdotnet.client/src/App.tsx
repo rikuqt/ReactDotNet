@@ -1,6 +1,6 @@
 import { list } from "postcss";
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ky from "ky";
 import { InputField, SubmitButton, TextField, PersonInfo, } from "./Components";
 import {
@@ -91,7 +91,7 @@ export default function App() {
   }
 
   const MappingPerson = () => {
-    const { isPending, error, data, isFetching } : {}  = useQuery({
+    const { isPending, error, data, isFetching }  = useQuery({
       queryKey: ['personData'],
       queryFn: async () => {
         const json = await ky("https://philosophical-kayley-ite22v2-c2d0e70d.koyeb.app/api/persons").json();
@@ -107,7 +107,7 @@ export default function App() {
     return (
       <>
       <ul>
-      {data?.map((person) => 
+      {data?.map((person: Person) => 
         <PersonInfo key={person.Id} persons={person} del={handleDelete}/>
       )}
     </ul>
