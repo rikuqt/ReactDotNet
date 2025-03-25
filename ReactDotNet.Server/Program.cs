@@ -1,5 +1,4 @@
 using Microsoft.OpenApi.Models;
-using PersonStore.DB;
 using PersonApi.Models;
 using PersonApi.Services;
 

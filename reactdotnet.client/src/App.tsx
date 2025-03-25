@@ -32,15 +32,9 @@ export default function App() {
   const [listContains, SetListContains] = useState<boolean>(false)
   const [persons, SetPersons] = useState<Person[]>([])
 
-  useEffect(() => {
-    console.log("useEffectin info: ", info)
-    getData()
-  }, [info]
-)
-
   const getData = async () => {
     try {
-      const json: any = await ky("http://localhost:5270/api/persons").json()
+      const json: any = await ky("https://philosophical-kayley-ite22v2-c2d0e70d.koyeb.app/api/persons").json()
       console.log("Databasesta tullut json data: ",json)
       SetPersons(json)
       
@@ -52,7 +46,7 @@ export default function App() {
 
   const postData = async () => {
       try {
-        const json = await ky.post('http://localhost:5270/api/persons', {json: {name: inputs.name, surname: inputs.surname, age: inputs.age}}).json();
+        const json = await ky.post('https://philosophical-kayley-ite22v2-c2d0e70d.koyeb.app/api/persons', {json: {name: inputs.name, surname: inputs.surname, age: inputs.age}}).json();
         console.log("lähetetty tieto backendiin: ", json)
         getData()
 
@@ -83,7 +77,7 @@ export default function App() {
   const handleDelete = async (id:(id:string) => void) => {
     if (window.confirm("You really want to delete this?")){
       try {
-        const json = await ky.delete(`http://localhost:5270/api/persons/${id}`, {method: 'delete'})
+        const json = await ky.delete(`https://philosophical-kayley-ite22v2-c2d0e70d.koyeb.app/api/persons/${id}`, {method: 'delete'})
         console.log("Poistettu id =>  ", id)
         getData()
 
@@ -96,20 +90,46 @@ export default function App() {
     }
   }
 
+  const MappingPerson = () => {
+    const { isPending, error, data, isFetching } : {}  = useQuery({
+      queryKey: ['personData'],
+      queryFn: async () => {
+        const json = await ky("https://philosophical-kayley-ite22v2-c2d0e70d.koyeb.app/api/persons").json();
+        console.log("Databasesta tullut json data: ", json);
+        return json; 
+      },
+    });
+  
+    if (isPending) return 'Loading...';
+  
+    if (error) return 'An error has occurred: ' + error.message;
+    
+    return (
+      <>
+      <ul>
+      {data?.map((person) => 
+        <PersonInfo key={person.Id} persons={person} del={handleDelete}/>
+      )}
+    </ul>
+    <p>{isFetching ? 'Updating...' : ''}</p>
+    </>
+    )
+  }
+
   return (
     <div className="App">
-       <ul>
-        {persons.map((person) => 
-          <PersonInfo key={person.Id} persons={person} del={handleDelete}/>
-        )}
-      </ul>
+      <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <MappingPerson />
+    </QueryClientProvider>
+
       <form onSubmit={handleSubmit}>
         <label>
          <InputField type="text" 
          name="name" 
          value={inputs.name || ""} 
          onChange={handleChange} 
-         placeholder="First name" 
+         placeholder="First name"
          />
         </label>
         <label>

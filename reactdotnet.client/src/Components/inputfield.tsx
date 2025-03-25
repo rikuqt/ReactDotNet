@@ -9,6 +9,7 @@ const InputField = ({type, name, value, onChange, placeholder }: {type: "text" |
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        required
       />
     </label>
   );

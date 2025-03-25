@@ -1,3 +1,4 @@
+
 type Person = {
     Id: string;
     Name: string;
@@ -7,12 +8,25 @@ type Person = {
 
 const PersonInfo = ({persons, del}: {persons: Person[], del: (id:string) => void}) => {
   return (
-    <table>
+    <table className="table-auto align-middle">
+  <thead>
     <tr>
-    <td>Name: {persons.Name} | Surname: {persons.Surname} | Age: {persons.Age}</td>
-    <td><button onClick={() => del(persons.Id)}>delete</button></td>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Age</th>
     </tr>
-  </table>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{persons.Name}</td>
+      <td>{persons.Surname}</td>
+      <td>{persons.Age}</td>
+      <td>
+        <button onClick={() => del(persons.Id)}>Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
   )
 }
 
