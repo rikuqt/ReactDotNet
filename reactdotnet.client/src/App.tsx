@@ -1,8 +1,8 @@
-import { list } from "postcss";
 import "./App.css";
 import { useState } from "react";
-import ky from "ky";
 import { InputField, SubmitButton, TextField, PersonInfo, } from "./Components";
+import { getData, postData, deletePerson } from "./Services/api";
+import { Person, Info } from "./Types";
 import {
   QueryClient,
   QueryClientProvider,
@@ -10,52 +10,16 @@ import {
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
+// Tanstack queryclient
 const queryClient = new QueryClient()
 
-// Types and interfaces
-type Person = {
-  Id: string;
-  Name: string;
-  Surname: string;
-  Age: number;
-}
-
-interface Info {
-  name?: string;
-  surname?: string;
-  age?: number;
-  }
-
 export default function App() {
-  const [info, setInfo] = useState<Info[]>([]);
+  const [info, setInfo] = useState<Info[] | any>([]); // <- pitäisi löytää parempi kuin "any"
   const [inputs, setInputs] = useState<Info>({});
   const [listContains, SetListContains] = useState<boolean>(false)
-  const [persons, SetPersons] = useState<Person[]>([])
 
-  const getData = async () => {
-    try {
-      const json: any = await ky("https://philosophical-kayley-ite22v2-c2d0e70d.koyeb.app/api/persons").json()
-      console.log("Databasesta tullut json data: ",json)
-      SetPersons(json)
-      
-      return json
-
-    }catch(error){
-      console.error("Dataa ei saatu haettua: ", error)}
-  }
-
-  const postData = async () => {
-      try {
-        const json = await ky.post('https://philosophical-kayley-ite22v2-c2d0e70d.koyeb.app/api/persons', {json: {name: inputs.name, surname: inputs.surname, age: inputs.age}}).json();
-        console.log("lähetetty tieto backendiin: ", json)
-        getData()
-
-    } catch(error) {
-
-      console.error("Virhe tietoja lähettäessä: ", error)
-    }
-  }
-
+  // Handles inputfields -> event follows user inputs that is added to list
+  // with right key value pairs
   const handleChange = (event: { target: { name: any; value: any; }; }) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -65,50 +29,38 @@ export default function App() {
     }));
   };
 
+  // Handles submit buttons logic -> preventdefault so site doesn't refresh when clicked
+  // Sets inputs to info list
+  // SetlistContains is used to check if field contains data or not -> returns "No data yet" on false
+  // if there is data data is returned
   const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    console.log(inputs);
-    setInfo([...info, { inputs }]);
-    console.log("HandleSubmit funktion info: ", info);
+    setInfo([...info, inputs]);
+    console.log("HandleSubmit funktion info: ", info); 
     SetListContains(true)
-    postData()
+    console.log("Info jota postataan: ", info)
+    postData(inputs)
   };
 
-  const handleDelete = async (id:(id:string) => void) => {
-    if (window.confirm("You really want to delete this?")){
-      try {
-        const json = await ky.delete(`https://philosophical-kayley-ite22v2-c2d0e70d.koyeb.app/api/persons/${id}`, {method: 'delete'})
-        console.log("Poistettu id =>  ", id)
-        getData()
-
-    } catch(error) {
-
-      console.error("Virhe poistaessa: ", error)
-    }
-
-      console.log("delete painettu")
-    }
-  }
-
+  // TanStack query -> query key defined as 'personData' -> if some other component
+  // tries to use/get data from same query key, there is no need to make many GET's
+  // isPending, erro , data, isFetching are TanStacks own variables 
+  // data returns data if everything goes right -> data is used to return a list to view of persons
   const MappingPerson = () => {
-    const { isPending, error, data, isFetching }  = useQuery({
+    const { isLoading, error, data, isFetching } = useQuery<Person[], Error, any, any>({ // <- korjaa any kohdat
       queryKey: ['personData'],
-      queryFn: async () => {
-        const json = await ky("https://philosophical-kayley-ite22v2-c2d0e70d.koyeb.app/api/persons").json();
-        console.log("Databasesta tullut json data: ", json);
-        return json; 
-      },
+      queryFn: getData
     });
   
-    if (isPending) return 'Loading...';
+    if (isLoading) return 'Loading...';
   
-    if (error) return 'An error has occurred: ' + error.message;
+    if (error instanceof Error) return 'An error has occurred: ' + error.message;
     
     return (
       <>
       <ul>
       {data?.map((person: Person) => 
-        <PersonInfo key={person.Id} persons={person} del={handleDelete}/>
+        <PersonInfo key={person.Id} persons={person} del={deletePerson}/>
       )}
     </ul>
     <p>{isFetching ? 'Updating...' : ''}</p>
@@ -119,12 +71,13 @@ export default function App() {
   return (
     <div className="App">
       <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
-      <MappingPerson />
-    </QueryClientProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+          <MappingPerson/>
+      </QueryClientProvider>
 
       <form onSubmit={handleSubmit}>
         <label>
+
          <InputField type="text" 
          name="name" 
          value={inputs.name || ""} 
@@ -132,6 +85,7 @@ export default function App() {
          placeholder="First name"
          />
         </label>
+        
         <label>
         <InputField type="text" 
          name="surname" 
@@ -140,6 +94,7 @@ export default function App() {
          placeholder="Surname" 
          />
         </label>
+
         <label>
         <InputField type="number"
          name="age"
@@ -150,6 +105,7 @@ export default function App() {
         </label>
 
         <SubmitButton type={"submit"} text="Submit"/>
+
         <TextField inputs={inputs} listContains={listContains}/>
       </form>
     </div>

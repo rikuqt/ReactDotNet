@@ -1,3 +1,4 @@
 // refaktoroi input fieldit omaksi kompotentiksi [x]
-// alert jos kentissä on tyhjää -> backend? []
+// alert jos kentissä on tyhjää -> backend? [x]
 // Docker composer ja front/back oma kontti -> yaml tiedostoon tulee tunnukset,salikset ja osoitteet []
+// TanStack testaus -> luo uusi komponetti esim. lista ihmisitä jonka voi avata

@@ -1,12 +1,6 @@
+import { Person } from "../Types";
 
-type Person = {
-    Id: string;
-    Name: string;
-    Surname: string;
-    Age: number;
-  }
-
-const PersonInfo = ({persons, del}: {persons: Person[], del: (id:string) => void}) => {
+const PersonInfo = ({persons, del}: {persons: Person, del: any}) => {
   return (
     <table className="table-auto align-middle">
   <thead>
