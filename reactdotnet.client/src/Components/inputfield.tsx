@@ -1,4 +1,4 @@
-export const InputField = ({type, name, value, onChange, placeholder }: {type: "text" | "number",name: string, value: string | number, 
+const InputField = ({type, name, value, onChange, placeholder }: {type: "text" | "number",name: string, value: string | number, 
   onChange: React.ChangeEventHandler<HTMLInputElement>, placeholder: string }) => {
   return (
     <label>
@@ -14,3 +14,5 @@ export const InputField = ({type, name, value, onChange, placeholder }: {type: "
     </label>
   );
 }
+
+export default InputField
