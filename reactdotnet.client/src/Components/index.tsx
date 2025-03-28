@@ -1,4 +1,4 @@
-export { default as InputField } from "./inputfield";
-export { default as SubmitButton } from "./submitButton";
-export { default as TextField } from "./textfield";
-export { default as PersonInfo } from "./personInfo"
+export { SubmitButton } from './submitButton';
+export { InputField } from './inputfield';
+export { TextField } from './textfield';
+export { PersonInfo } from './personInfo';

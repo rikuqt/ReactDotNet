@@ -1,4 +1,4 @@
-const TextField = ({inputs, listContains}: {inputs: any, listContains: boolean}) => {
+export const TextField = ({inputs, listContains}: {inputs: any, listContains: boolean}) => {
     if(listContains === true) {
       return  <>  
       <h1 className="text-2xl font-bold">Sending this data to database</h1>   
@@ -12,5 +12,3 @@ const TextField = ({inputs, listContains}: {inputs: any, listContains: boolean})
       return <p>No data yet</p>
     }
   }
-
-export default TextField

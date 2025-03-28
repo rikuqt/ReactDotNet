@@ -1,6 +1,6 @@
-import { Person } from "../Types";
+import { Person } from "../types";
 
-const PersonInfo = ({persons, del}: {persons: Person, del: any}) => {
+export const PersonInfo = ({persons, del}: {persons: Person, del: any}) => {
   return (
     <table className="table-auto align-middle">
   <thead>
@@ -23,5 +23,3 @@ const PersonInfo = ({persons, del}: {persons: Person, del: any}) => {
 </table>
   )
 }
-
-export default PersonInfo

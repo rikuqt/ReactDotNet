@@ -1,12 +1,13 @@
 import "./App.css";
-import { useState } from "react";
-import { InputField, SubmitButton, TextField, PersonInfo, } from "./Components";
-import { getData, postData, deletePerson } from "./Services/api";
-import { Person, Info } from "./Types";
+import { useEffect, useState } from "react";
+import { InputField, SubmitButton, TextField, PersonInfo, } from "./components";
+import { getData, postData, deletePerson } from "./services"
+import { Person, Info } from "./types";
 import {
   QueryClient,
   QueryClientProvider,
   useQuery,
+  useMutation,
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
@@ -17,6 +18,8 @@ export default function App() {
   const [info, setInfo] = useState<Info[] | any>([]); // <- pitäisi löytää parempi kuin "any"
   const [inputs, setInputs] = useState<Info>({});
   const [listContains, SetListContains] = useState<boolean>(false)
+
+ 
 
   // Handles inputfields -> event follows user inputs that is added to list
   // with right key value pairs
@@ -67,6 +70,13 @@ export default function App() {
     </>
     )
   }
+
+  // const mutation = useMutation({
+  //   mutationFn: postData,
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries(['PersonData']);
+  //   }
+  // });
 
   return (
     <div className="App">
