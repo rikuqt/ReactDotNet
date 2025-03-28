@@ -15,4 +15,4 @@ const InputField = ({type, name, value, onChange, placeholder }: {type: "text" |
   );
 }
 
-export default InputField;
+export default InputField

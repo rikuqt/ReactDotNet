@@ -13,4 +13,4 @@ const TextField = ({inputs, listContains}: {inputs: any, listContains: boolean})
     }
   }
 
-export default TextField
+  export default TextField

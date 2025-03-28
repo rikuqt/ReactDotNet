@@ -1,5 +1,7 @@
-export interface Info {
+interface Info {
     name?: string;
     surname?: string;
     age?: number;
   }
+
+ export default Info;

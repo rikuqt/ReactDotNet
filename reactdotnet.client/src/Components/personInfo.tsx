@@ -1,4 +1,4 @@
-import { Person } from "../Types";
+import Person from "../types/Person"
 
 const PersonInfo = ({persons, del}: {persons: Person, del: any}) => {
   return (
