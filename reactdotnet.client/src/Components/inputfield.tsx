@@ -1,4 +1,5 @@
-const InputField = ({type, name, value, onChange, placeholder }: {type: "text" | "number",name: string, value: string | number, 
+const InputField = ({type, name, value, onChange, placeholder, disabled }: 
+  {type: "text" | "number",name: string, value: string | number, disabled: boolean,
   onChange: React.ChangeEventHandler<HTMLInputElement>, placeholder: string }) => {
   return (
     <label>
@@ -9,6 +10,7 @@ const InputField = ({type, name, value, onChange, placeholder }: {type: "text" |
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        disabled={disabled}
         required
       />
     </label>

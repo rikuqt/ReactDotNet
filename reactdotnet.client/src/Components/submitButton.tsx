@@ -1,6 +1,11 @@
-const SubmitButton = ({text, type}:{text: string, type: "submit"}) => {
+const SubmitButton = ({text, type, disabled}:{text: string, type: "submit", disabled : boolean}) => {
     return(
-      <button className="text-orange-400 hover:bg-orange-200" type={type}>{text}</button>
+      <button className="text-orange-400 hover:bg-orange-200" 
+      type={type}
+      disabled={disabled}
+      >
+        {text}
+      </button>
     )
   }
 

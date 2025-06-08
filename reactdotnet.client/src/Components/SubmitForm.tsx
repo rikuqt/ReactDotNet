@@ -1,16 +1,18 @@
 import { useState } from "react";
 import Info from "../types/Info";
-import PostData from "../services/PostData";
 import InputField from "./inputfield";
-import TextField from "./textfield";
 import SubmitButton from "./submitButton";
+import { usePostMutation } from "../Queries/Mutations";
+import { Loader2 } from 'lucide-react';
+import PersonList from "./PersonList";
 
 
 const SubmitForm =  () => {
           const [info, setInfo] = useState<Info[] | any>([]); // <- pitäisi löytää parempi kuin "any"
           const [inputs, setInputs] = useState<Info>({});
-          const [listContains, SetListContains] = useState<boolean>(false)
-        
+
+          const { mutate, isLoading, error } = usePostMutation();
+
           // Handles inputfields -> event follows user inputs that is added to list
           // with right key value pairs
           const handleChange = (event: { target: { name: any; value: any; }; }) => {
@@ -30,45 +32,57 @@ const SubmitForm =  () => {
         event.preventDefault();
         setInfo([...info, inputs]);
         console.log("HandleSubmit funktion info: ", info); 
-        SetListContains(true)
         console.log("Info jota postataan: ", info)
-        PostData(inputs)
+        mutate(inputs);
+        setInputs({}); // Reset inputs after submission
       };
     
     return (
-    <form onSubmit={handleSubmit}>
-        <label>
+      <div className="flex flex-col justify-center md:flex md:shrink-0">
+        <div className="flex flex-col items-center justify-center mb-4">
+          <PersonList />
+        </div>
+        <form onSubmit={handleSubmit} className="flex flex-col items-center outline-orange-400 outline-dashed gap-3 p-4 rounded-lg shadow-md">
+          <label>
+            <InputField type="text" 
+            name="name" 
+            value={inputs.name || ""} 
+            onChange={handleChange} 
+            placeholder="First name"
+            disabled={isLoading ? true : false}
+            />
+            </label>
+            
+            <label>
+            <InputField type="text" 
+            name="surname" 
+            value={inputs.surname || ""} 
+            onChange={handleChange} 
+            placeholder="Surname" 
+            disabled={isLoading ? true : false}
+            />
+            </label>
 
-         <InputField type="text" 
-         name="name" 
-         value={inputs.name || ""} 
-         onChange={handleChange} 
-         placeholder="First name"
-         />
-        </label>
-        
-        <label>
-        <InputField type="text" 
-         name="surname" 
-         value={inputs.surname || ""} 
-         onChange={handleChange} 
-         placeholder="Surname" 
-         />
-        </label>
-
-        <label>
-        <InputField type="number"
-         name="age"
-         value={inputs.age || ""}
-         onChange={handleChange}
-         placeholder="Age"
-         />
-        </label>
-
-        <SubmitButton type={"submit"} text="Submit"/>
-
-        <TextField inputs={inputs} listContains={listContains}/>
-      </form>
+            <label>
+            <InputField type="number"
+            name="age"
+            value={inputs.age || ""}
+            onChange={handleChange}
+            placeholder="Age"
+            disabled={isLoading ? true : false}
+            />
+            </label>
+            <p>
+              {isLoading ? (
+                <div className="flex items-center gap-2">
+                  Sending new info... <Loader2 className="h-6 w-6 text-gray-500" />
+                </div>
+              ) : undefined}
+              {error ? `Error: ${error.message}` : undefined}
+            </p>
+            <SubmitButton type={"submit"} text="Submit" disabled={isLoading ? true : false}/>
+          </form>
+      </div>
     )
 }
 

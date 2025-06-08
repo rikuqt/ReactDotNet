@@ -39,8 +39,6 @@ body {
   flex-direction: column; /* Stack elements vertically */
   justify-content: center; /* Center vertically */
   align-items: center; /* Center horizontally */
-  min-width: 320px;
-  min-height: 100vh;
   text-align: center; /* Ensures text inside elements is centered */
 }
 

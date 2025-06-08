@@ -1,42 +1,49 @@
 import Person from '../types/Person';
-import GetData from '../services/GetData';
-import DeletePerson from '../services/DeletePerson';
 import PersonInfo from './personInfo'
-import {
-    useQuery,
-  } from '@tanstack/react-query';
+import { useUsersQuery } from '../Queries/Queries';
+import { useDeleteMutation } from '../Queries/Mutations';
+import { Loader2 } from 'lucide-react';
 
-  // TanStack query -> query key defined as 'personData' -> if some other component
-  // tries to use/get data from same query key, there is no need to make many GET's
-  // isPending, erro , data, isFetching are TanStacks own variables 
-  // data returns data if everything goes right -> data is used to return a list to view of persons
+
+
   const PersonList = () => {
-    const { isLoading, error, data, isFetching } = useQuery<Person[], Error, any, any>({ // <- korjaa any kohdat
-      queryKey: ['personData'],
-      queryFn: GetData
-    });
+
+    const useQuery = useUsersQuery();
+
+    const useDelete = useDeleteMutation();
+
+
   
-    if (isLoading) return 'Loading...';
+    if (useQuery.isLoading) return (
+      <>
+      Loading... <Loader2 className="animate-spin" />
+      </>
+    );
   
-    if (error instanceof Error) return 'An error has occurred: ' + error.message;
+    if (useQuery.error instanceof Error) return 'An error has occurred: ' + useQuery.error.message;
     
     return (
       <>
       <ul>
-      {data?.map((person: Person) => 
-        <PersonInfo key={person.Id} persons={person} del={DeletePerson}/>
+      {useQuery.data?.map((person: Person) => 
+        <PersonInfo key={person.Id} persons={person} del={useDelete.mutate}/>
       )}
     </ul>
-    <p>{isFetching ? 'Updating...' : ''}</p>
+    <p>
+      {useQuery.isFetching ? (
+      <div className="flex items-center gap-2">
+      Updating... <Loader2 className="animate-spin" /> 
+      </div>
+      ) : undefined}
+      {useQuery.data?.length === 0 ? 'No data yet' : undefined}
+      {useQuery.isError ? 'An error has occurred' : undefined}
+      {useQuery.isLoading ? 
+      (<>
+      Loading... <Loader2 className="animate-spin" /> 
+      </>)
+      : undefined}
+    </p>
     </>
     )
   }
-
-  // const mutation = useMutation({
-  //   mutationFn: postData,
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries(['PersonData']);
-  //   }
-  // });
-
   export default PersonList;

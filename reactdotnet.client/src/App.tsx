@@ -1,6 +1,5 @@
 import "./App.css";
 import SubmitForm from "./components/SubmitForm";
-import PersonList from "./components/PersonList";
 import {
   QueryClient,
   QueryClientProvider,
@@ -16,10 +15,8 @@ export default function App() {
     <div className="App">
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
-          <PersonList/>
+          <SubmitForm />
       </QueryClientProvider>
-      <SubmitForm />
-      
     </div>
   );
 }
